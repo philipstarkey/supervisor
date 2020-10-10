@@ -294,7 +294,9 @@ def runner(argv):
         # any unhandled exceptions and print statements.
         print("supervisor service is starting...")
         print("(execute this script with '-h' or '--help' if that isn't what you want)")
-        if not sys.stdout.isatty():
+        if sys.stdout is not None and sys.stdout.isatty():
+            pass
+        else:
             # By default, the service does not start a console and this
             # causes side effects in sending signals to the subprocess.
             # Manually starts when an output terminal is not detected.
